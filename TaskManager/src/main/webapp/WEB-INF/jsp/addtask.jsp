@@ -7,27 +7,27 @@
 <title>Update Task</title>
 </head>
 <body>
-<form action='updatetaskpassed' method='POST'>  
+<form action='addtaskpassed' method='POST'>  
         <div class="container">
-        	<label>Update Email : </label>   
+        	<label>Add Email : </label>   
             <input type="text" placeholder="Enter Email" name="email" required>   
-            <label>Update TaskName : </label>   
+            <label>Add TaskName : </label>   
             <input type="text" placeholder="Enter Task Name" name="taskName" required>  
-            <label>Update TaskDescription : </label>   
+            <label>Add TaskDescription : </label>   
             <textarea placeholder="Enter Task Description" name ="taskDescription" rows="4" cols="50" required>
             </textarea>
-            <label>Update StartDate : </label>   
+            <label>Add StartDate : </label>   
             <input type="date" placeholder="mm-dd-yyyy" value="" min="01-01-2021" max="12-31-2021" name="startDate" required>
-            <label>Update EndDate : </label>   
+            <label>Add EndDate : </label>   
             <input type="date" placeholder="mm-dd-yyyy" value="" min="01-01-2021" max="12-31-2021" name="endDate" required>
-            <label>Update Severity : </label>
+            <label>Add Severity : </label>
             <select name="severity" required>
             <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
             </select>
             <br>
-            <button type="submit">Update Task</button>     
+            <button type="submit">Add Task</button>     
         </div>   
     </form>     
 </body>

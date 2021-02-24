@@ -25,10 +25,10 @@ public class TaskManagerController {
 	ModelAndView createTaskFailedView = new ModelAndView("createtaskfailed");
 	ModelAndView displayTaskView = new ModelAndView("displaytask");
 	
-	//Update Task JSP's
-	ModelAndView updateTaskView = new ModelAndView("updatetask");
-	ModelAndView updateTaskPassedView = new ModelAndView("updatetaskpassed");
-	ModelAndView updateTaskFailedView = new ModelAndView("updatetaskfailed");
+	//Add Task JSP's
+	ModelAndView addTaskView = new ModelAndView("addtask");
+	ModelAndView addTaskPassedView = new ModelAndView("addtaskpassed");
+	ModelAndView addTaskFailedView = new ModelAndView("addtaskfailed");
 	
 	//Delete Task JSP's
 	ModelAndView deleteTaskView = new ModelAndView("deletetask");
@@ -98,18 +98,17 @@ public class TaskManagerController {
 		return createTaskFailedView;
 	}
 	
-	@GetMapping(path = "/updatetask")
-	public ModelAndView updateTask() {
-		return updateTaskView;
+	@GetMapping(path = "/addtask")
+	public ModelAndView addTask() {
+		return addTaskView;
 	}
 	
-	@PostMapping(path = "/updatetaskpassed")
-	public ModelAndView taskUpdated(@ModelAttribute TaskManagerEntity taskEntity) {
+	@PostMapping(path = "/addtaskpassed")
+	public ModelAndView taskAdded(@ModelAttribute TaskManagerEntity taskEntity) {
 		taskRepo.save(taskEntity);
 		Iterable<TaskManagerEntity> newEntity = taskRepo.findAll();
 		for(TaskManagerEntity myEntity : newEntity) {
 			if(myEntity.getTaskName().equals(taskEntity.getTaskName())) {
-				taskRepo.deleteAll();
 				taskEntity.setEmail(myEntity.getEmail());
 				taskEntity.setTaskName(myEntity.getTaskName());
 				taskEntity.setTaskDescription(myEntity.getTaskDescription());
@@ -117,10 +116,10 @@ public class TaskManagerController {
 				taskEntity.setEndDate(myEntity.getEndDate());
 				taskEntity.setSeverity(myEntity.getSeverity());
 				taskRepo.save(taskEntity);
-				return updateTaskPassedView;
+				return addTaskPassedView;
 			}
 		}
-		return updateTaskFailedView;
+		return addTaskFailedView;
 	}
 	
 	@GetMapping(path = "/deletetask")
